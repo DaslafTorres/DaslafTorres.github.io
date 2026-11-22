@@ -1,43 +1,65 @@
-# Portfolio — Daslaf Torres
+# DaslafTorres.github.io
 
-Personal site and case studies of an **AI/LLM engineer**.
+Personal portfolio of **Daslaf Torres**, AI/LLM engineer. Bilingual (EN/ES), static.
+
+**Live:** <https://daslaftorres.github.io> · **Español:** <https://daslaftorres.github.io/es/>
 
 **Focus:** RAG systems with measurable evaluation · tool-using agents · AI-native full-stack apps.
 
-## Status
+## What is here
 
-🚧 Repository initialized — site in development (week 1 of 5).
+- `/` and `/es/` — landing page: positioning, featured project with real metrics, what is in progress, about, contact.
+- `/work/criptolex-cl/` and `/es/work/criptolex-cl/` — case study of the RAG system over Chilean crypto regulation: corpus, chunking, hybrid retrieval, the citation contract, evaluation and the published numbers.
 
-## Planned stack
+Every number on the site comes from the source project
+[`criptolex-cl`](https://github.com/DaslafTorres/criptolex-cl) (`README.md`, `eval/results.json`).
+
+## Stack
 
 | Layer | Choice |
 |---|---|
-| Site | Astro 5 + Tailwind CSS |
+| Site | [Astro](https://astro.build) (static output), hand-written CSS, no UI framework |
 | Language | TypeScript |
-| Content | MDX case studies (EN with ES toggle) |
-| Hosting | Vercel |
-| Projects | Python + FastAPI · Next.js · Supabase · Groq |
+| Content | Typed data modules in `src/data/` — one file per language pair |
+| Hosting | GitHub Pages, deployed from Actions |
 
-## Roadmap
+Design tokens mirror the `criptolex-cl` UI (`--bg #0a0b0d`, `--accent #8b9cff`) so the site and the live demo read as one product.
 
-- [x] Repository setup
-- [ ] Positioning and identity
-- [ ] Project 1 — RAG with measurable evaluation
-- [ ] Project 2 — Tool-using agent
-- [ ] Project 3 — AI-native full-stack app
-- [ ] Portfolio site and case studies
-- [ ] Deploy
+## Development
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
+npm run preview
+```
+
+There is no test suite; `npm run build` is the verification step.
 
 ## Structure
 
 ```
 .
-├── .gitattributes
-├── .gitignore
-├── LICENSE
-├── README.md
-└── opencode.jsonc
+├── .github/workflows/deploy.yml   # build + deploy to Pages
+├── public/                        # favicon, OG image, demo.gif
+├── src/
+│   ├── components/                # Header, Footer, Site, CaseStudy
+│   ├── data/                      # site.ts, case-study.ts (EN/ES copy)
+│   ├── layouts/Base.astro         # head, canonical, hreflang, OG
+│   ├── pages/                     # / and /work/criptolex-cl/
+│   │   └── es/                    # /es/ and /es/work/criptolex-cl/
+│   └── styles/global.css
+└── AGENTS.md                      # conventions for contributors and agents
 ```
+
+## Roadmap
+
+- [x] Positioning and identity
+- [x] Project 1 — RAG with measurable evaluation
+- [x] Portfolio site and case studies
+- [x] Deploy
+- [ ] Project 2 — tool-using agent
+- [ ] Project 3 — AI-native full-stack app
 
 ## License
 

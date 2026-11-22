@@ -121,6 +121,11 @@ a {
   color: var(--text);
 }
 
+.nav-links {
+  display: inline-flex;
+  gap: 22px;
+}
+
 .lang-switch {
   display: inline-flex;
   border: 1px solid var(--border);

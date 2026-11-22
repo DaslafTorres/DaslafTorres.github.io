@@ -36,7 +36,11 @@ const defaultHome = new URL(homePath("en"), Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:image" content={new URL("/og.png", Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${c.hero.name} — ${c.hero.role}`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL("/og.png", Astro.site).href} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
   </head>

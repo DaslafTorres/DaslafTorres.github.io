@@ -12,7 +12,7 @@ export interface Metric {
 
 export interface Copy {
   meta: { title: string; description: string };
-  nav: { work: string; about: string; contact: string };
+  nav: { label: string; work: string; about: string; contact: string };
   skip: string;
   hero: {
     eyebrow: string;
@@ -61,7 +61,7 @@ const en: Copy = {
     description:
       "I build applications with LLMs on real data: retrieval systems with measurable evaluation, citation-enforcing generation, and services that ship. Portfolio of Daslaf Torres, AI/LLM engineer in Chile.",
   },
-  nav: { work: "Work", about: "About", contact: "Contact" },
+  nav: { label: "Primary", work: "Work", about: "About", contact: "Contact" },
   skip: "Skip to content",
   hero: {
     eyebrow: "Portfolio · 2026",
@@ -148,7 +148,7 @@ const es: Copy = {
     description:
       "Construyo aplicaciones con LLMs sobre datos reales: sistemas de recuperación con evaluación medible, generación que exige citas y servicios en producción. Portafolio de Daslaf Torres, ingeniero de IA/LLM en Chile.",
   },
-  nav: { work: "Proyectos", about: "Sobre mí", contact: "Contacto" },
+  nav: { label: "Principal", work: "Proyectos", about: "Sobre mí", contact: "Contacto" },
   skip: "Ir al contenido",
   hero: {
     eyebrow: "Portafolio · 2026",

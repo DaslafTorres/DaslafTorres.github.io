@@ -1,0 +1,19 @@
+---
+import Base from "../../../layouts/Base.astro";
+import CaseStudy from "../../../components/CaseStudy.astro";
+import { caseCopy } from "../../../data/case-study";
+import { casePath, type Lang } from "../../../data/site";
+
+const lang: Lang = "es";
+const c = caseCopy[lang];
+---
+
+<Base
+  lang={lang}
+  title={c.meta.title}
+  description={c.meta.description}
+  path={casePath(lang)}
+  altPath={casePath("en")}
+>
+  <CaseStudy lang={lang} />
+</Base>

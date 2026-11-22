@@ -1,0 +1,90 @@
+---
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import { caseCopy } from "../data/case-study";
+import { DEMO_URL, homePath, REPO_URL, type Lang } from "../data/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = caseCopy[lang];
+const home = homePath(lang);
+---
+
+<Header lang={lang} altPath={lang === "en" ? "/es/work/criptolex-cl/" : "/work/criptolex-cl/"} />
+
+<main id="main">
+  <div class="wrap case-head">
+    <p class="eyebrow">{c.eyebrow}</p>
+    <h1>{c.title}</h1>
+    <p class="standfirst">{c.standfirst}</p>
+    <dl class="case-facts">
+      {
+        c.facts.map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="wrap">
+    <article class="prose">
+      {
+        c.sections.map((section) => (
+          <>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+            {section.bullets && (
+              <ul>
+                {section.bullets.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </>
+        ))
+      }
+
+      <h2>{c.results.title}</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              {c.results.columns.map((column) => (
+                <th scope="col">{column}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              c.results.rows.map((row) => (
+                <tr>
+                  <td>{row.metric}</td>
+                  <td class="value">{row.value}</td>
+                  <td class="note">{row.note}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <h2>{c.closing.title}</h2>
+      <p>{c.closing.paragraph}</p>
+      <div class="links">
+        <a href={REPO_URL} target="_blank" rel="noopener">GitHub ↗</a>
+        <a href={DEMO_URL} target="_blank" rel="noopener">Live demo ↗</a>
+      </div>
+      <a class="back" href={home}>← {c.back}</a>
+    </article>
+  </div>
+</main>
+
+<Footer lang={lang} />

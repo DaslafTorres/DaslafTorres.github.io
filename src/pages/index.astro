@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/Base.astro";
+import Site from "../components/Site.astro";
+import { copy, homePath, type Lang } from "../data/site";
+
+const lang: Lang = "en";
+const c = copy[lang];
+---
+
+<Base
+  lang={lang}
+  title={c.meta.title}
+  description={c.meta.description}
+  path={homePath(lang)}
+  altPath={homePath("es")}
+>
+  <Site lang={lang} />
+</Base>

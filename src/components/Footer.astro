@@ -1,0 +1,18 @@
+---
+import { copy, type Lang } from "../data/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = copy[lang];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© {year} Daslaf Torres · {c.footer.built}</span>
+    <span>{c.footer.note}</span>
+  </div>
+</footer>

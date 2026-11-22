@@ -1,0 +1,146 @@
+---
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import {
+  casePath,
+  copy,
+  DEMO_URL,
+  EMAIL,
+  GITHUB_URL,
+  REPO_URL,
+  type Lang,
+} from "../data/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = copy[lang];
+const caseStudy = casePath(lang);
+---
+
+<Header lang={lang} altPath={lang === "en" ? "/es/" : "/"} />
+
+<main id="main">
+  <section class="wrap hero">
+    <p class="eyebrow">{c.hero.eyebrow}</p>
+    <h1>{c.hero.name}</h1>
+    <p class="role">{c.hero.role}</p>
+    <p class="pitch">{c.hero.pitch}</p>
+    <p class="availability">{c.hero.availability}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener">
+        {c.hero.primaryCta}
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a class="btn btn-ghost" href={caseStudy}>{c.hero.secondaryCta}</a>
+    </div>
+  </section>
+
+  <section class="wrap section" id="work">
+    <article class="card">
+      <div class="card-body">
+        <p class="eyebrow">{c.featured.label}</p>
+        <div class="card-top">
+          <h2 class="card-title">
+            criptolex-cl <span>· {c.featured.tagline}</span>
+          </h2>
+        </div>
+        <p class="summary">{c.featured.summary}</p>
+
+        <ul class="metrics">
+          {
+            c.featured.metrics.map((metric) => (
+              <li>
+                <span class="metric-value">{metric.value}</span>
+                <span class="metric-label">{metric.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <ul class="stack" aria-label={c.featured.stackLabel}>
+          {c.featured.stack.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <div class="links">
+          <a href={DEMO_URL} target="_blank" rel="noopener">{c.featured.demo} ↗</a>
+          <a href={REPO_URL} target="_blank" rel="noopener">{c.featured.repo} ↗</a>
+          <a href={caseStudy}>{c.featured.case} →</a>
+        </div>
+      </div>
+      <figure class="demo">
+        <img
+          src="/demo.gif"
+          alt={c.featured.caption}
+          width="880"
+          height="619"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{c.featured.caption}</figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <section class="wrap section" id="next">
+    <div class="section-head">
+      <p class="eyebrow">{c.more.label}</p>
+      <h2>{c.more.title}</h2>
+    </div>
+    <div class="grid-2">
+      {
+        c.more.items.map((item) => (
+          <article class="mini">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <span class="status">{item.status}</span>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="wrap section" id="about">
+    <div class="section-head">
+      <p class="eyebrow">{c.about.label}</p>
+      <h2>{c.about.title}</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        {c.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <dl class="facts">
+        {
+          c.about.facts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="wrap section" id="contact">
+    <div class="contact-card">
+      <p class="eyebrow">{c.contact.label}</p>
+      <h2>{c.contact.title}</h2>
+      <p>{c.contact.body}</p>
+      <div class="contact-links">
+        <a href={`mailto:${EMAIL}`}>
+          <span class="label">{c.contact.emailLabel}</span>
+          {EMAIL}
+        </a>
+        <a href={GITHUB_URL} target="_blank" rel="noopener">
+          <span class="label">{c.contact.githubLabel}</span>
+          github.com/DaslafTorres ↗
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<Footer lang={lang} />

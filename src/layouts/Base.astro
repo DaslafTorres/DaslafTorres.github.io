@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import { copy, homePath, otherLang, type Lang } from "../data/site";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string;
+  altPath: string;
+}
+
+const { lang, title, description, path, altPath } = Astro.props;
+const c = copy[lang];
+const canonical = new URL(path, Astro.site);
+const alternate = new URL(altPath, Astro.site);
+const defaultHome = new URL(homePath("en"), Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="alternate" hreflang={lang} href={canonical.href} />
+    <link rel="alternate" hreflang={otherLang(lang)} href={alternate.href} />
+    <link rel="alternate" hreflang="x-default" href={defaultHome.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0a0b0d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Daslaf Torres" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={new URL("/og.png", Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{c.skip}</a>
+    <slot />
+  </body>
+</html>
